@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
+//import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
@@ -22,7 +22,10 @@ public class MainController {
     private final Random random = new Random();
 
     //vytvoření seznamu obrázků
-    List<String> seznamObrazku = Arrays.asList("DtW-E6BcSNE", "Z_ydQotnsqk", "bg4Vz54j9x8", "Y9CEWzhftAo", "p5v8DENKY60", "_Q5b2wE-tb8", "BnATLYwyyjo", "ZHdMovHAHT0");
+    //private static final List<String> seznamObrazku = Arrays.asList("DtW-E6BcSNE", "Z_ydQotnsqk", "bg4Vz54j9x8", "Y9CEWzhftAo", "p5v8DENKY60", "_Q5b2wE-tb8", "BnATLYwyyjo", "ZHdMovHAHT0");
+
+    public MainController() throws IOException {
+    }
 
     //vytvoření seznamu z textového souboru s citáty
     private static List<String> readAllLines(String resource) throws IOException {
@@ -41,21 +44,21 @@ public class MainController {
         }
     }
 
+    private final List<String> nactiCitaty = readAllLines("citaty.txt");
+    private final List<String> nactiObrazky = readAllLines("obrazky.txt");
+
 
     //mapování na šablonu
     @GetMapping("/")
-    public ModelAndView citaty() throws IOException {
-        List<String> citaty = readAllLines("citaty.txt");
-        int cisloCitat = random.nextInt(citaty.size());
-        int cisloObrazek = random.nextInt(seznamObrazku.size());
+    public ModelAndView citaty() {
+        int cisloCitat = random.nextInt(nactiCitaty.size());
+        int cisloObrazek = random.nextInt(nactiObrazky.size());
 
         ModelAndView result = new ModelAndView("citaty");
-        result.addObject("citat", citaty.get(cisloCitat));
-        result.addObject("obrazek", String.format("background-image: url(https://source.unsplash.com/%s/1600x900)", seznamObrazku.get(cisloObrazek)));
+        result.addObject("citat", nactiCitaty.get(cisloCitat));
+        result.addObject("obrazek", String.format("background-image: url(https://source.unsplash.com/%s/1600x900)", nactiObrazky.get(cisloObrazek)));
         return result;
 
     }
 
 }
-
-
