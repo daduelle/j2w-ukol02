@@ -22,7 +22,7 @@ public class MainController {
     private final Random random = new Random();
 
     //vytvoření seznamu obrázků
-    List<String> seznamObrazku = Arrays.asList("DtW-E6BcSNE", "Z_ydQotnsqk", "bg4Vz54j9x8", "Y9CEWzhftAo", "p5v8DENKY60", "_Q5b2wE-tb8", "BnATLYwyyjo", "ZHdMovHAHT0");
+    private static final List<String> seznamObrazku = Arrays.asList("DtW-E6BcSNE", "Z_ydQotnsqk", "bg4Vz54j9x8", "Y9CEWzhftAo", "p5v8DENKY60", "_Q5b2wE-tb8", "BnATLYwyyjo", "ZHdMovHAHT0");
 
     //vytvoření seznamu z textového souboru s citáty
     private static List<String> readAllLines(String resource) throws IOException {
@@ -44,9 +44,9 @@ public class MainController {
 
     //mapování na šablonu
     @GetMapping("/")
-    public ModelAndView citaty() throws IOException {
+    public ModelAndView nactiCitaty() throws IOException {
         List<String> citaty = readAllLines("citaty.txt");
-        int cisloCitat = random.nextInt(citaty.size());
+        int cisloCitat = random.nextInt(nactiCitaty.size());
         int cisloObrazek = random.nextInt(seznamObrazku.size());
 
         ModelAndView result = new ModelAndView("citaty");
