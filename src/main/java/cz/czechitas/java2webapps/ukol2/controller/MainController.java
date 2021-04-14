@@ -1,4 +1,4 @@
-package cz.czechitas.java2webapps.ukol2.Controller;
+package cz.czechitas.java2webapps.ukol2.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,9 +20,6 @@ public class MainController {
 
     //generátor náhodných čísel
     private final Random random = new Random();
-
-    //vytvoření seznamu obrázků
-    //private static final List<String> seznamObrazku = Arrays.asList("DtW-E6BcSNE", "Z_ydQotnsqk", "bg4Vz54j9x8", "Y9CEWzhftAo", "p5v8DENKY60", "_Q5b2wE-tb8", "BnATLYwyyjo", "ZHdMovHAHT0");
 
     public MainController() throws IOException {
     }
